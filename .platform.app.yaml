@@ -7,11 +7,15 @@
 name: app
 
 # The runtime the application uses.
-type: php:7.2
+type: php:7.4
 
 # Specify additional PHP extensions that should be loaded.
 runtime:
     extensions:
+    - ctype
+    - dom
+    - iconv
+    - simplexml
     - xsl
     - sodium
 
@@ -27,9 +31,10 @@ build:
 relationships:
     database: db:mysql
     redis: cache:redis
+    essearch: searchelastic:elasticsearch
 
 # The size of the persistent disk of the application (in MB).
-disk: 2048
+disk: 1596
 
 # The 'mounts' describe writable, persistent filesystem mounts in the application.
 mounts:
