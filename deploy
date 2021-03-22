@@ -15,6 +15,7 @@ for url, route in routes.iteritems():
 
 db = relationships["database"][0]
 redis = relationships["redis"][0]
+search = relationships["essearch"][0]
 
 installed = os.path.exists(".config/installed")
 
@@ -51,7 +52,16 @@ args = [
     "--page-cache-redis-server=%s" % redis["host"],
     "--page-cache-redis-port=%s" % redis["port"],
     "--page-cache-redis-db=2",
+    "--elasticsearch-host=%s" % search["host"],
+    "--elasticsearch-port=%s" % search["port"],
     ]
+
+#   --elasticsearch-host localhost \
+#   --elasticsearch-port 9200 \
+#   --elasticsearch-enable-auth 1 \
+#   --elasticsearch-username "$eluser" \
+#   --elasticsearch-password "$elpassword" \
+#   --elasticsearch-index-prefix "${eluser}.magento2"
 
 if not installed:
     args += [
